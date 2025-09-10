@@ -20,7 +20,7 @@ const allowedOrigins = [
 const corsOptions = {
   origin: [
     "http://localhost:3000", // for local development
-    "https://planetpioneers-mebccr6wf-hardik-bindals-projects.vercel.app" // your Vercel frontend
+    "https://sih-frontend-f77b4rooo-hardik-bindals-projects.vercel.app" // your Vercel frontend
   ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
