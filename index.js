@@ -16,12 +16,17 @@ const allowedOrigins = [
   process.env.FRONTEND_URL || "http://localhost:3000", // fallback for local dev
 ];
 
+// ✅ CORS Config
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || "*",
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  origin: [
+    "http://localhost:3000", // for local development
+    "https://planetpioneers-mebccr6wf-hardik-bindals-projects.vercel.app" // your Vercel frontend
+  ],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 app.use(cors(corsOptions));
+
 
 
 // ✅ Logger (to debug requests)
