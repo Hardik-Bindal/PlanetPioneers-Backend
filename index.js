@@ -11,23 +11,18 @@ const app = express();
 // ✅ Middleware
 app.use(express.json());
 
-// ✅ CORS Config (allow only frontend)
-const allowedOrigins = [
-  process.env.FRONTEND_URL || "http://localhost:3000", // fallback for local dev
-];
-
 // ✅ CORS Config
 const corsOptions = {
   origin: [
-    "http://localhost:3000", // for local development
-    "https://sih-frontend-f77b4rooo-hardik-bindals-projects.vercel.app" // your Vercel frontend
+    "http://localhost:3000", // local dev
+    "https://sih-frontend-f77b4rooo-hardik-bindals-projects.vercel.app", // old vercel deployment
+    "https://planetpioneers-n6teym68s-hardik-bindals-projects.vercel.app", // ✅ new frontend deployment
   ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true, // allow cookies & auth headers
 };
 app.use(cors(corsOptions));
-
-
 
 // ✅ Logger (to debug requests)
 app.use((req, res, next) => {
@@ -52,7 +47,10 @@ app.get("/test", (req, res) => {
 
 // ✅ MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.log("❌ MongoDB Error:", err));
 
@@ -67,3 +65,4 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
