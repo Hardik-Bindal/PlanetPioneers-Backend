@@ -15,7 +15,6 @@ app.use(express.json());
 const corsOptions = {
   origin: [
     "http://localhost:3000", // local dev
-    "https://sih-frontend-f77b4rooo-hardik-bindals-projects.vercel.app", // old vercel deployment
     "https://planetpioneers-n6teym68s-hardik-bindals-projects.vercel.app", // ✅ new frontend deployment
   ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
